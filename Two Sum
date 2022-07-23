@@ -1,0 +1,53 @@
+Question
+********
+
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+Example 1:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+Example 2:
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+
+Example 3:
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+ 
+
+Constraints:
+    2 <= nums.length <= 104
+    -109 <= nums[i] <= 109
+    -109 <= target <= 109
+    Only one valid answer exists
+
+Algorithm Used
+**************
+
+HashMap: To reduce the time complexity we are using the algorithmn hashmap. We create a dictionary(HashMap) and traverse through the array one by one, while traversing we 
+subtract the value in the array from the target and check if that subtracted number exist in dictionary. If not the number in the array is added to the dictionary along with 
+its index. we traverse through the array and add elements one by one until we are able to find the value x(x=target-(current value in array)). We return the index of those
+numbers.
+
+Solution
+********
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        pair = dict()
+        for i, n in enumerate(nums):
+            p = target-n
+            if p in pair:
+                return [pair[p], i]
+            else:
+                #now p's pair is in the index i.
+                pair[n] = i
