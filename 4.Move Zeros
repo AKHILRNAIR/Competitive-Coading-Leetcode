@@ -1,0 +1,37 @@
+**Question**
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+Note that you must do this in-place without making a copy of the array.
+
+Example 1:
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+
+Example 2:
+Input: nums = [0]
+Output: [0]
+
+Constraints:
+    1 <= nums.length <= 104
+    -231 <= nums[i] <= 231 - 1
+
+
+**Algorithmn/Explanation**
+We assign 2 pointers to start and end it the array. And us ethe first pointer to traverse through the array. When we hit a 0 we pop the element and add zero to the end.
+We then move last pointer to the left(It is used to indicate the last element-non zero).
+
+**Solution**
+class Solution(object):
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        i = 0
+        j = len(nums) - 1
+        while i <= j:
+            if nums[i] == 0:
+                nums.pop(i)
+                nums.append(0)
+                j=j-1
+            else:
+                i=i+1
